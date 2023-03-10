@@ -1,22 +1,17 @@
 import './App.css';
+import NavBar from './components/NavBar/NavBar';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage/LandingPage';
+import Blog from './components/Blog/Blog';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <section className="App">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/blogs" element={<Blog />} />
+      </Routes>
+    </section>
   );
 }
 
