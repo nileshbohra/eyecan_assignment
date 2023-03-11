@@ -1,26 +1,33 @@
-import { Injectable } from '@nestjs/common';
-import { CreateBlogDto } from './dto/create-blog.dto';
-import { UpdateBlogDto } from './dto/update-blog.dto';
+import {Injectable} from '@nestjs/common';
+import {CreateBlogDto} from './dto/create-blog.dto';
+import {UpdateBlogDto} from './dto/update-blog.dto';
+import {Model, Mongoose} from "mongoose";
+import {Blog, BlogDocument} from "./schemas/blog.schema";
+import {InjectModel} from "@nestjs/mongoose";
 
 @Injectable()
 export class BlogService {
-  create(createBlogDto: CreateBlogDto) {
-    return 'This action adds a new blog';
-  }
+    constructor(@InjectModel(Blog.name) private blogModel: Model<BlogDocument>) {
+    }
 
-  findAll() {
-    return `This action returns all blog`;
-  }
+    create(createBlogDto: CreateBlogDto) {
+        const createdBlog = new this.blogModel(createBlogDto);
+        return createdBlog.save();
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} blog`;
-  }
+    findAll() {
+        return this.blogModel.find({is_active: 1}).sort({updatedAt: -1}).exec()
+    }
 
-  update(id: number, updateBlogDto: UpdateBlogDto) {
-    return `This action updates a #${id} blog`;
-  }
+    findOne(id: string) {
+        return this.blogModel.find({_id: id, is_active: 1}).exec();
+    }
 
-  remove(id: number) {
-    return `This action removes a #${id} blog`;
-  }
+    update(id: string, updateBlogDto: UpdateBlogDto) {
+        return this.blogModel.updateOne({_id: id}, updateBlogDto).exec();
+    }
+
+    remove(id: string) {
+        return this.blogModel.deleteOne({_id: id}).exec();
+    }
 }
