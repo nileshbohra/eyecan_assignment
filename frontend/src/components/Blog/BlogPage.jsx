@@ -16,12 +16,12 @@ function BlogPage(props) {
             });
             setBlog(data);
         });
-    }, []);
+    }, [id]);
 
     const deleteBlog = (e, id) => {
         deleteBlogPost(id).then(data => {
             console.log(data);
-            navigate("/blogs");
+            navigate("/");
         });
     }
 

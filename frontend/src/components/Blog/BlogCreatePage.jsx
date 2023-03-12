@@ -29,11 +29,11 @@ function BlogCreatePage(props) {
         };
         if (id) {
             updateBlogPost(id, blogData).then(data => {
-                navigate(`/blogs/${id}`);
+                navigate(`/`);
             });
         } else {
             createBlogPost(blogData).then(data => {
-                navigate("/blogs");
+                navigate("/");
             });
         }
     }
