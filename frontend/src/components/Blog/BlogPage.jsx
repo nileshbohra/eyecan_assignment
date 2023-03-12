@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {deleteBlogPost, getBlogPost} from "../../api/BlogApi";
 import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import {Link, useNavigate} from "react-router-dom";
 

@@ -1,9 +1,19 @@
 div.landing_page_container {
-    height: 100vh;
-    overflow: auto;
+    /*height: 100vh;*/
+    /*overflow: auto;*/
     background-image: linear-gradient(to right, white 45%, grey 40%);
 }
 
 div.landing_page {
-    height: 100px;
+    height: 87vh;
+}
+
+@media (max-width: 576px) {
+    div.landing_page_container {
+        background-image: none;
+        background: grey;
+    }
+    img{
+        display: none;
+    }
 }
